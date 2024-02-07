@@ -1,27 +1,12 @@
-# Frontend
+assets in angular.json ??
+The assets array is used to list files or folders that you want to copy as-is when you build your project. These files are not processed by the Angular's build system. They are directly copied to the output directory, maintaining the same directory structure.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
+execute ng serve if we change something in angular.json etc..  bcz they r loaded at first
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+@Injectable({
+  providedIn: 'root'
+})
+this tells that the service is injected in root component hence we have to register it in providers array in app.module.ts
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+when u provide a service at root level angular craetes a single shared instance of service meaning it is available for whole application
