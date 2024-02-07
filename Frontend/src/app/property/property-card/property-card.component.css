@@ -5,3 +5,46 @@
 .houseimg{
     height: 250px;
 }
+/* for zooming in effects */
+
+.card:hover img{
+    transform: scale(1.1,1.1);
+    transition-duration: 500ms;
+    transition-timing-function: ease-out;
+    height:250px;
+     opacity: .5;   /*opacity for image disappering effects */
+}
+
+/* for zooming out */
+.card img{
+    transform: scale(1,1);
+    transition-duration: 500ms;
+    transition-timing-function: ease-out;
+    height: 250px;
+}    
+
+/* written so that image doesnt move outside the card */
+.img-wrapper{
+    overflow: hidden;
+    position: relative;             /*for making button to center*/
+}
+
+/*for making button to center*/
+.member-icons{
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+}
+
+.img-wrapper:hover .member-icons{    /*this will make the button to appear when hover over the img-wrapper class as in member-icons class bottom is -30% and we are making it to zero in this class so they appear*/
+    bottom: 0;
+    opacity: 1;     /*makes btn appear that is set to zero in the .member-icons class*/
+}
+
+.animate{                 /* make it look like buttons r coming from the bottom*/
+    transition: all 0.3s ease-in-out;
+}
