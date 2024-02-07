@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-property-card',
@@ -6,11 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './property-card.component.css'
 })
 export class PropertyCardComponent {
+  @Input() property:any;
 
-Property:any={
-  "Id":1,
-  "Type":"House",
-  "Price":12000,
-  "Name":"Housee"
-}
 }
