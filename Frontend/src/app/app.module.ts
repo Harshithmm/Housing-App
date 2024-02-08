@@ -7,13 +7,17 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
 import { PropertyListComponent } from './property/property-list/property-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddPropertyComponent } from './property/add-property/add-property.component';
+import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     PropertyCardComponent,
-    PropertyListComponent
+    PropertyListComponent,
+    AddPropertyComponent,
+    PropertyDetailComponent
   ],
   imports: [
     BrowserModule,
