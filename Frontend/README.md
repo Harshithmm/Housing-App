@@ -78,3 +78,9 @@ ytlink:
 
       <img *ngIf="property.Image" class="houseimg" src="../../../assets/Images/{{property.Image}}.jpg" alt="Not Found">
     <img *ngIf="!property.Image" class="houseimg" src="../../../assets/Images/House_default.jpg" alt="Not Found">
+
+    -------------------------------------------------------------------------------------
+
+    Making Buy and Rent items seperate
+
+    https://www.youtube.com/watch?v=VQnZMWTFn88&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=14

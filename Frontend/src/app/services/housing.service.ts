@@ -10,13 +10,13 @@ export class HousingService {
 
   constructor(private http:HttpClient) { }
 
-  getAllProperties():Observable<Iproperty[]>{
+  getAllProperties(SellRent:number):Observable<Iproperty[]>{
    return this.http.get('data/properties.json').pipe(
     map((data:{[key:string]:any}) =>{
       const propertiesArray:Array<Iproperty> =[];
       for (const id in data){
         console.log(id)
-        if(data.hasOwnProperty(id)){
+        if(data.hasOwnProperty(id) && data[id].SellRent === SellRent ){
          propertiesArray.push(data[id]); // Fix: Use index signature to allow indexing with a number
         }
       }
