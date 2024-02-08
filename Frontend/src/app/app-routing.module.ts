@@ -21,7 +21,11 @@ const routes: Routes = [
   {
     path:"property-detail/:id",
     component:PropertyDetailComponent
-  }
+  },  
+  {
+    path:"**",
+    component:PropertyListComponent   //This will redirect to PropertyListComponent in this case if any wrong urls are typedafter localhost
+  },
 ];
 
 @NgModule({

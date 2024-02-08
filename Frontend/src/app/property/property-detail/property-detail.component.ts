@@ -19,6 +19,11 @@ selectNext() {
   ngOnInit(): void {
     this.propertyId=this.route.snapshot.params['id'];  //should be same as the id in /property-dateail/:id and it is case sensetive
 
+    this.route.params.subscribe(
+        params=>{
+            this.propertyId=params['id'];
+        }
+    )
   }
 
 

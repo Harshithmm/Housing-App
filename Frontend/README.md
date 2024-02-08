@@ -40,3 +40,41 @@ Back() {
 }
 
 To navigate to differnt page if used in ngOnint() u can go to a diff component at the end of the lifecycle of the component
+
+
+
+--------------------------------------------------------
+
+<button routerLink="property-detail/1" class="btn btn-primary">1</button>  
+<button routerLink="property-detail/2" class="btn btn-primary">2</button>
+<button routerLink="property-detail/3" class="btn btn-primary">3</button> 
+
+in angular this does not work if we are in the property-detail component and use the above like ex:localhost4200/property-detail if we use here it doesnt work only url changes
+
+https://www.youtube.com/watch?v=VQnZMWTFn88&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=14
+
+hence
+
+    this.route.params.subscribe(
+        params=>{
+            this.propertyId=params['id'];
+        }
+    )
+    
+    we use the abve code to fix that problem
+
+ytlink:
+    https://www.youtube.com/watch?v=VQnZMWTFn88&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=14
+
+
+----------------------------------------------------------------------------------
+
+  {
+    path:"**",
+    component:PropertyListComponent   //This will redirect to PropertyListComponent in this case if any wrong urls are typedafter localhost
+  },
+
+  --------------------------------------------------------
+
+      <img *ngIf="property.Image" class="houseimg" src="../../../assets/Images/{{property.Image}}.jpg" alt="Not Found">
+    <img *ngIf="!property.Image" class="houseimg" src="../../../assets/Images/House_default.jpg" alt="Not Found">

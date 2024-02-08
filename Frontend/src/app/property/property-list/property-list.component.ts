@@ -13,7 +13,7 @@ export class PropertyListComponent {
 constructor(private housingservice:HousingService){}
 
   properties:Iproperty[]=[
-    {Id:0,Type:"",Name:"",Price:0}
+    {Id:0,Type:"",Name:"",Price:0,SellRent:0}
   ];
 
   ngOnInit():void{

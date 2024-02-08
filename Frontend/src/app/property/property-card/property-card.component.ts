@@ -7,6 +7,6 @@ import { Iproperty } from '../../Models/IProperty.interface';
   styleUrl: './property-card.component.css'
 })
 export class PropertyCardComponent {
-  @Input() property:Iproperty={Id:0,Type:"",Name:"",Price:0};
+  @Input() property:Iproperty={Id:0,Type:"",Name:"",Price:0,SellRent:0,Image:""};
 
 }
