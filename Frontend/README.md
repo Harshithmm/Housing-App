@@ -84,3 +84,70 @@ ytlink:
     Making Buy and Rent items seperate
 
     https://www.youtube.com/watch?v=VQnZMWTFn88&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=14
+
+
+    ----------------------------------------------------------------------------------------------
+
+            <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
+            <div class="form-group col-12">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" ngModel name="propertyName">
+            </div>
+
+  the above is a method to pass data from html fields to typescript file through onSubmit(Form) method
+
+  also we ca do [(ngModel)]="propertyName" name="propertyName" but for this we have to define a variable in the ts file
+
+  -------------------------------------------------------------------------------------------------
+
+                <button [disabled]="!Form.valid" type="submit" class="btn btn-primary m-2">Submit</button>
+
+this only works when fields have attributes like required etc..
+ex:
+                <input type="text" class="form-control" ngModel name="propertyName" required>  bcz it needs some validation
+
+
+----------------------------------------------------------------------------------------------------------
+
+bydefault angular adds classes like ng-valid,ng-invalid at runtime if we add fields like requred like in the above hence
+we can make the border of the Name field red or any color by giving style for ng-invalid class so in runtime it turns to red
+ex:
+.ng-invalid.ng-touched {
+    border-color: red;
+}
+the above executes when both the classes are called at the runtime together hence after once touch it becomes red
+
+-------------------------------------------------------------------------------------------------------------------------
+for a warning that can be show below individual input boxes we can
+                <span *ngIf="(!Form.valid && Form) && (Form.touched) " class="text-danger">Please Provide a Name</span>
+but the above will check for entire form hence
+            <div class="form-group col-12">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" ngModel name="propertyName" required #propName="ngModel">
+                <span *ngIf="(!propName.valid) && (propName.touched) " class="text-danger">Please Provide a Name</span>
+            </div>
+
+-------------------------------------------------------------------------------------------------------------------------
+
+@ViewChild('Form') addPropertyForm: NgForm | undefined;
+
+the above shows other way of getting the data in this case from html tto ts and form data in this case.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+validators angular
+
+https://angular.io/api/forms/Validators
+
+------------------------------------------------------------------------------------------------------------------------
+
+                <label for="name">Name</label>
+                <input type="text" class="form-control" ngModel name="propertyName" required #propName="ngModel" minlength="5">
+                <span *ngIf="(!propName.valid) && (propName.touched) " class="text-danger">
+                <span *ngIf="propName.errors?.['required']" class="text-danger">Please Provide a Name</span>
+                <span *ngIf="propName.errors?.['minlength']" class="text-danger">Name should contain at least 5 letters</span>
+            </span>
+
+  for giving 2 error messages one for length and one for blank field
+
+  https://www.youtube.com/watch?v=UJjxRNv-qVs&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=16

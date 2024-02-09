@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,10 +8,17 @@ import { Router } from '@angular/router';
   styleUrl: './add-property.component.css'
 })
 export class AddPropertyComponent {
+  @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
 
-  constructor(private route:Router){}
-Back() {
-  this.route.navigate(['/']);
-}
+  onSubmit(form: NgForm) {
+    console.log("form submitted");
+    // console.log(form);
+    console.log(this.addPropertyForm);
+  }
 
+  constructor(private route: Router) {}
+
+  Back() {
+    this.route.navigate(['/']);
+  }
 }
