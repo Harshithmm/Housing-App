@@ -151,3 +151,15 @@ https://angular.io/api/forms/Validators
   for giving 2 error messages one for length and one for blank field
 
   https://www.youtube.com/watch?v=UJjxRNv-qVs&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=16
+
+
+  ----------------------------------------------------------------------------------------------------------------------------
+
+  the add-property form was a template driven form but the register form is reactive form
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
