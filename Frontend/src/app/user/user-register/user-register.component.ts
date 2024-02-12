@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from '../../services/user-service.service';
 import { User } from '../../Models/user';
-import * as alertify from 'alertifyjs'
+import { AlertifyService } from '../../services/alertify.service';
+
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -24,7 +25,8 @@ export class UserRegisterComponent implements OnInit{
      this.createRegistrationForm();
   }
 constructor(private fb: FormBuilder,
-  private service:UserServiceService){
+  private service:UserServiceService,
+  private alertifyService:AlertifyService){
   // this.registrationForm=fb.group({
   //   userName:[null,Validators.required],
   //   email:[null,[Validators.required,Validators.email]],
@@ -92,6 +94,10 @@ get userName(){
     this.service.addUser(this.UserData());
     this.registrationForm.reset();  //reset the form after submit
     this.userSubmitted=false;           //used if user submit valid data then the error should not come after submitting
+    this.alertifyService.Success("Congrats,you are successfully registred");
+    }
+    else{
+    this.alertifyService.Error("Kindly provide required details");
     }
   }
   
