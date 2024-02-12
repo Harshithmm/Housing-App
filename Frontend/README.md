@@ -163,8 +163,44 @@ https://angular.io/api/forms/Validators
 
 for global import for every form
 
+------------------------------------------------------------------------------------------------------------------------------------
+
+              <span class="text-danger" *ngIf="!registrationForm.get('userName')?.valid && registrationForm.get('userName')?.touched">
+                Please provide a valid name</span>
+
+      instead of the above we can define a get method in ts file like
+        get userName(){
+    return this.registrationForm.get('userName') as FormControl;
+  }
+  and above code will be more readable like
+
+                <span class="text-danger" *ngIf="!userName?.valid && userName?.touched">
+                Please provide a valid name</span>
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+          <div class="form-group col-12">
+            <label for="cpassword" class="form-label">Confirm Password</label>
+            <input type="text" class="form-control" formControlName="confirmPassword" name="confirmPassword">
+            <span class="text-danger" *ngIf="!confirmPassword?.valid && confirmPassword?.touched">
+              <span *ngIf="confirmPassword.hasError('required')">
+                Please confirm password
+              </span>
+            </span>
+            <span *ngIf="registrationForm.hasError('notmatched') && confirmPassword.valid">  <!--this error is checked in form level not control level bcz this 
+                                                                                              error will get in FormGroup level and also seperate span bcz its 
+                                                                                              only executed when first conditon fails-->
+              password not matched
+            </span>
+          </div>
+
+          
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
-
+////////////////////////////////////////////////////
+              <span class="text-danger" *ngIf="email.errors?.['email']">     <!-- not working-->
+                Please Provide a Valid email</span>
+            </span>
