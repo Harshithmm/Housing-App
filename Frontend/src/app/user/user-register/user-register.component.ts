@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserServiceService } from '../../services/user-service.service';
 
 @Component({
   selector: 'app-user-register',
@@ -9,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class UserRegisterComponent implements OnInit{
   registrationForm!: FormGroup;
   user:any={};
+  userSubmitted:boolean=false;         //used for giving error msg when submitting invalid form
   ngOnInit(): void {
     // this.registrationForm=new FormGroup({
     //   userName:new FormControl('abc',[Validators.required]),
@@ -20,7 +22,8 @@ export class UserRegisterComponent implements OnInit{
     // );
      this.createRegistrationForm();
   }
-constructor(private fb: FormBuilder){
+constructor(private fb: FormBuilder,
+  private service:UserServiceService){
   // this.registrationForm=fb.group({
   //   userName:[null,Validators.required],
   //   email:[null,[Validators.required,Validators.email]],
@@ -73,23 +76,14 @@ get userName(){
   }
   onSubmit() {
     console.log(this.registrationForm);
+    this.userSubmitted=true;
+    if(this.registrationForm.valid){
     this.user=Object.assign(this.user,this.registrationForm.value);  //using this we can assign value of 1 method to another
-    this.addUser(this.user);
+    this.service.addUser(this.user);
     this.registrationForm.reset();  //reset the form after submit
+    this.userSubmitted=false;           //used if user submit valid data then the error should not come after submitting
+    }
   }
 
-  addUser(user:any[]){
-    let users=[];
-    let individualUser=localStorage.getItem('Users');
-    if(individualUser!=null){
-      users=JSON.parse(individualUser);
-      users.push(...[user]);
-      // users=[users,...[user]]; not working
-    }
-    else{
-      users=[user];
-    }
-    localStorage.setItem('Users',JSON.stringify(users));
-  }
-
+  
 }
