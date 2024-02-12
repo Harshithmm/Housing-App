@@ -19,7 +19,7 @@
             <span class="text-danger" *ngIf="!email?.valid && email?.touched">
               <span *ngIf="email.hasError('required')">
                 email field cannot be empty</span>
-              <span class="text-danger" *ngIf="email.errors?.['email']"> <!-- not working-->
+              <span class="text-danger" *ngIf="email.errors?.['email']"> 
                 Please Provide a Valid email</span>
             </span>
           </div>

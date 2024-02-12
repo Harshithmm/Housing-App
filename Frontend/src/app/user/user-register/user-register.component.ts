@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-register',
@@ -9,19 +9,37 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UserRegisterComponent implements OnInit{
   registrationForm!: FormGroup;
   ngOnInit(): void {
-    this.registrationForm=new FormGroup({
-      userName:new FormControl('abc',[Validators.required]),
-      email:new FormControl(null,[Validators.required]),
-      password:new FormControl(null,[Validators.required,Validators.minLength(8)]),
-      confirmPassword:new FormControl(null,[Validators.required]),
-      mobile:new FormControl(null,[Validators.required,Validators.maxLength(10)])
-    },this.matchingFields('password','confirmPassword')
-    );
+    // this.registrationForm=new FormGroup({
+    //   userName:new FormControl('abc',[Validators.required]),
+    //   email:new FormControl(null,[Validators.required,Validators.email]),
+    //   password:new FormControl(null,[Validators.required,Validators.minLength(8)]),
+    //   confirmPassword:new FormControl(null,[Validators.required]),
+    //   mobile:new FormControl(null,[Validators.required,Validators.maxLength(10)])
+    // },this.matchingFields('password','confirmPassword')
+    // );
+     this.createRegistrationForm();
   }
-
-  get userName(){
-    return this.registrationForm.get('userName') as FormControl;
-  }
+constructor(private fb: FormBuilder){
+  // this.registrationForm=fb.group({
+  //   userName:[null,Validators.required],
+  //   email:[null,[Validators.required,Validators.email]],
+  //   password:[null,[Validators.required,Validators.minLength(8)]],
+  //   confirmPassword:[null,Validators.required],
+  //   mobile:[null,[Validators.required,Validators.maxLength(10)]]
+  // },{Validators:this.matchingFields('password','confirmPassword')});
+}
+createRegistrationForm(){
+  this.registrationForm=this.fb.group({
+    userName:[null,Validators.required],
+    email:[null,[Validators.required,Validators.email]],
+    password:[null,[Validators.required,Validators.minLength(8)]],
+    confirmPassword:[null,Validators.required],
+    mobile:[null,[Validators.required,Validators.maxLength(10)]]
+  },{Validators:this.matchingFields('password','confirmPassword')});
+}
+get userName(){
+  return this.registrationForm.get('userName') as FormControl;
+}
   
   get email(){
     return this.registrationForm.get('email') as FormControl;
