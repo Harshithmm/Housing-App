@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from '../../services/user-service.service';
 import { User } from '../../Models/user';
-
+import * as alertify from 'alertifyjs'
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
