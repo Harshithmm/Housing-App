@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from '../../services/user-service.service';
+import { User } from '../../Models/user';
 
 @Component({
   selector: 'app-user-register',
@@ -9,7 +10,7 @@ import { UserServiceService } from '../../services/user-service.service';
 })
 export class UserRegisterComponent implements OnInit{
   registrationForm!: FormGroup;
-  user:any={};
+  user:User={userName:'',email:'',password:'',mobile:0};
   userSubmitted:boolean=false;         //used for giving error msg when submitting invalid form
   ngOnInit(): void {
     // this.registrationForm=new FormGroup({
@@ -40,6 +41,15 @@ createRegistrationForm(){
     confirmPassword:[null,Validators.required],
     mobile:[null,[Validators.required,Validators.maxLength(10)]]
   },{Validators:this.matchingFields('password','confirmPassword')});
+}
+
+UserData():User{
+  return this.user={
+    userName:this.userName.value,
+    email:this.email.value,
+    password:this.password.value,
+    mobile:this.mobile.value
+  }
 }
 get userName(){
   return this.registrationForm.get('userName') as FormControl;
@@ -78,12 +88,11 @@ get userName(){
     console.log(this.registrationForm);
     this.userSubmitted=true;
     if(this.registrationForm.valid){
-    this.user=Object.assign(this.user,this.registrationForm.value);  //using this we can assign value of 1 method to another
-    this.service.addUser(this.user);
+    // this.user=Object.assign(this.user,this.registrationForm.value);  //using this we can assign value of 1 method to another
+    this.service.addUser(this.UserData());
     this.registrationForm.reset();  //reset the form after submit
     this.userSubmitted=false;           //used if user submit valid data then the error should not come after submitting
     }
   }
-
   
 }

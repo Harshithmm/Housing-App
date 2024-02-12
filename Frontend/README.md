@@ -198,7 +198,22 @@ for global import for every form
   more info reactive forms:
   https://www.youtube.com/watch?v=WNSjvhJKaIA&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=18
 
+--------------------------------------------------------------------------------------------------------------------------------------------
 
+  onSubmit() {
+    console.log(this.registrationForm);
+    this.userSubmitted=true;
+    if(this.registrationForm.valid){
+    // this.user=Object.assign(this.user,this.registrationForm.value);  //using this we can assign value of 1 method to another
+    this.service.addUser(this.UserData());
+    this.registrationForm.reset();  //reset the form after submit
+    this.userSubmitted=false;           //used if user submit valid data then the error should not come after submitting
+    }
+  }
+
+  ---------------------------------------------------------------------------------------------------------------------------------------------
+
+  
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
