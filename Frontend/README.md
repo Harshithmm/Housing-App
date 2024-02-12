@@ -194,7 +194,9 @@ for global import for every form
             </span>
           </div>
 
-          
+  
+  more info reactive forms:
+  https://www.youtube.com/watch?v=WNSjvhJKaIA&list=PL_NVFNExoAxclqXo9fLAeP0G2Qp56Fu8C&index=18
 
 
 

@@ -19,7 +19,7 @@
             <span class="text-danger" *ngIf="!email?.valid && email?.touched">
               <span *ngIf="email.hasError('required')">
                 email field cannot be empty</span>
-              <span class="text-danger" *ngIf="email.errors?.['email']">     <!-- not working-->
+              <span class="text-danger" *ngIf="email.errors?.['email']"> <!-- not working-->
                 Please Provide a Valid email</span>
             </span>
           </div>
@@ -45,7 +45,8 @@
                 Please confirm password
               </span>
             </span>
-            <span class="text-danger" *ngIf="registrationForm.hasError('notmatched') && confirmPassword.valid">  <!--this error is checked in form level not control level bcz this 
+            <span class="text-danger" *ngIf="registrationForm.hasError('notmatched') && confirmPassword.valid">
+              <!--this error is checked in form level not control level bcz this 
                                                                                               error will get in FormGroup level and also seperate span bcz its 
                                                                                               only executed when first conditon fails-->
               password not matched
@@ -59,7 +60,7 @@
               <span *ngIf="mobile.hasError('required')">
                 mobile field cannot be empty</span>
               <span *ngIf="email.hasError('minlength')">
-               mobile numbr should be 10 digits long</span>
+                mobile numbr should be 10 digits long</span>
             </span>
           </div>
 
