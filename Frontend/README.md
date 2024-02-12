@@ -157,9 +157,14 @@ https://angular.io/api/forms/Validators
 
   the add-property form was a template driven form but the register form is reactive form
 
+----------------------------------------------------------------------------------------------------------------------
 
+@import 'assets/forms.css';
+
+for global import for every form
 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
+
