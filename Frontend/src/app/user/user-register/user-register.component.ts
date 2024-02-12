@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class UserRegisterComponent implements OnInit{
   registrationForm!: FormGroup;
+  user:any={};
   ngOnInit(): void {
     // this.registrationForm=new FormGroup({
     //   userName:new FormControl('abc',[Validators.required]),
@@ -72,6 +73,23 @@ get userName(){
   }
   onSubmit() {
     console.log(this.registrationForm);
+    this.user=Object.assign(this.user,this.registrationForm.value);  //using this we can assign value of 1 method to another
+    this.addUser(this.user);
+    this.registrationForm.reset();  //reset the form after submit
+  }
+
+  addUser(user:any[]){
+    let users=[];
+    let individualUser=localStorage.getItem('Users');
+    if(individualUser!=null){
+      users=JSON.parse(individualUser);
+      users.push(...[user]);
+      // users=[users,...[user]]; not working
+    }
+    else{
+      users=[user];
+    }
+    localStorage.setItem('Users',JSON.stringify(users));
   }
 
 }
