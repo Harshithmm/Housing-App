@@ -222,9 +222,39 @@ for global import for every form
 
   its not good to use jquery from bootstrap (js module which we ) website to angular hence we use ngx bootstrap
 this contains most of bootstrap resources that are available for angular and u dont need to use jquery for this it uses existing bootstrap markup
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+           <div class="form-group col-12">
+                            <p>BHK</p>
+                            <div class="btn-group" btnRadioGroup>
+                                <label
+                                *ngFor="let bhk of [1,2,3,4]"
+                                class="btn btn-outline-primary" 
+                                [btnRadio]="bhk" tabindex="0" role="button" name="SellRent">{{bhk}}</label>
+                                <!-- [btnRadio]="bhk" : property binding for giving values where btnRadio is value property which we can find in normal radio buttions -->
+                            </div>
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
 ////////////////////////////////////////////////////
               <span class="text-danger" *ngIf="email.errors?.['email']">     <!-- not working-->
                 Please Provide a Valid email</span>
             </span>
+////////////////////////////////////////////////////
+
+btn-block not working in add-property.html
+
+                        <div class="form-group col-12">
+                            <button type="button" class="btn btn-block btn-primary" (click)="selectTab(1)">Next</button>
+                        </div>
+
+                        ////////////////////////////////////
+
+app-property.css
+
+/* the below not working it should make the radio button in the add-property form a bit round */
+.btn-group > label [ng-reflect-btn-radio]{
+    border-radius: 44px;
+    padding: 0 15px;
+    line-height: 30px;
+}                

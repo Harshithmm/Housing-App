@@ -21,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //ngx-bootstrap
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +46,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BsDropdownModule.forRoot(),//for dropdown using ngx-bootstrap
 
    TabsModule.forRoot(), //for tabs
+
+   ButtonsModule.forRoot(),
+
   ],
   providers: [HousingService,UserServiceService,AlertifyService],
   bootstrap: [AppComponent]

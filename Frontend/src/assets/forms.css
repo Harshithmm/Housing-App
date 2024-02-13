@@ -4,3 +4,10 @@
 .text-danger{
     font-size: 12px;
 }
+
+/* the below not working it should make the radio button in the add-property form a bit round */
+.btn-group > label [ng-reflect-btn-radio]{
+    border-radius: 44px;
+    padding: 0 15px;
+    line-height: 30px;
+}
