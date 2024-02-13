@@ -17,7 +17,10 @@ import { UserServiceService } from './services/user-service.service';
 import { AlertifyService } from './services/alertify.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+//ngx-bootstrap
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     AddPropertyComponent,
     PropertyDetailComponent,
     UserLoginComponent,
-    UserRegisterComponent
+    UserRegisterComponent 
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),//for dropdown using ngx-bootstrap
+
+   TabsModule.forRoot(), //for tabs
   ],
   providers: [HousingService,UserServiceService,AlertifyService],
   bootstrap: [AppComponent]
