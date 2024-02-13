@@ -234,6 +234,9 @@ this contains most of bootstrap resources that are available for angular and u d
                                 [btnRadio]="bhk" tabindex="0" role="button" name="SellRent">{{bhk}}</label>
                                 <!-- [btnRadio]="bhk" : property binding for giving values where btnRadio is value property which we can find in normal radio buttions -->
                             </div>
+
+
+-------------------------------------------------------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
 ////////////////////////////////////////////////////
