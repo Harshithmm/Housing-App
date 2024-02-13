@@ -23,7 +23,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +48,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
    TabsModule.forRoot(), //for tabs
 
    ButtonsModule.forRoot(),
-
+   BsDatepickerModule.forRoot(),
   ],
   providers: [HousingService,UserServiceService,AlertifyService],
   bootstrap: [AppComponent]
