@@ -220,6 +220,8 @@ for global import for every form
 
   --------------------------------------------------------------------------------------------------------------------------------------------------
 
+  its not good to use jquery from bootstrap (js module which we ) website to angular hence we use ngx bootstrap
+this contains most of bootstrap resources that are available for angular and u dont need to use jquery for this it uses existing bootstrap markup
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
 ////////////////////////////////////////////////////

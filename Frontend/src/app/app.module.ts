@@ -15,7 +15,9 @@ import { UserRegisterComponent } from './user/user-register/user-register.compon
 import { HousingService } from './services/housing.service';
 import { UserServiceService } from './services/user-service.service';
 import { AlertifyService } from './services/alertify.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,10 @@ import { AlertifyService } from './services/alertify.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),//for dropdown using ngx-bootstrap
   ],
   providers: [HousingService,UserServiceService,AlertifyService],
   bootstrap: [AppComponent]

@@ -28,9 +28,24 @@
           <li *ngIf="!loggedIn()" class="nav-item">
             <a  class="nav-link" routerLinkActive="active" routerLink="user-login">Login</a>
           </li>
-          <li *ngIf="loggedIn()" class="nav-item">
+          <!-- <li *ngIf="loggedIn()" class="nav-item">
             <a class="nav-link" (click)="onLogout()" >Logout</a>
-          </li>
+          </li> -->
+          <div *ngIf="loggedIn()" class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                    aria-controls="dropdown-basic">
+              Welcome {{loggedInUserName}} <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" href="#"><i class="fas fa-tachometer-alt"></i>View Dashboard</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i>My Profile</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#"><i class="fas fa-key"></i>Change Password</a></li>
+              <li class="divider dropdown-divider"></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="onLogout()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+              </li>
+            </ul>
+          </div>
         </ul>
       </div>
 

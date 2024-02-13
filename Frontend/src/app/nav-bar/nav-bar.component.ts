@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,12 +7,17 @@ import { Component } from '@angular/core';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-onLogout() {
-  console.log("logout successful");
- localStorage.removeItem('token');
-}
+  loggedInUserName: string = '';
 
-  loggedIn(){
+  constructor(private service:AlertifyService){}
+  onLogout() {
+    console.log("logout successful");
+    localStorage.removeItem('token');
+    this.service.Success("Logout Successful");
+  }
+
+  loggedIn() {
+    this.loggedInUserName = localStorage.getItem('token') ?? '';
     return localStorage.getItem('token');  //in case user logged in it contains a value otherwise undefined
   }
 }
