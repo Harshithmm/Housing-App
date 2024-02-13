@@ -1,13 +1,13 @@
 <div class="row">
-    <div class="col-8">
+    <div class="col-8 shadow-lg p-0 bg-white">
         <div class="card">
             <div class="card-header">
                 <h3>List Your Property</h3>
             </div>
             <div class="card-body">
                 <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
-                    <div>
-                        <tabset #formTabs>
+                    <div class="tab-panel">
+                        <tabset class="member-tabset" #formTabs>
                             <tab heading="Basic info">
                                 <div class="form-group col-12">
                                     <p>I want to</p>
@@ -36,7 +36,8 @@
 
                                 <div class="form-group col-12">
                                     <p>Property Type</p>
-                                    <div class="btn-group" btnRadioGroup name="propType" [(ngModel)]="propertyView.Type">
+                                    <div class="btn-group" btnRadioGroup name="propType"
+                                        [(ngModel)]="propertyView.Type">
                                         <label *ngFor="let property of propertTypes" class="btn btn-outline-primary"
                                             [btnRadio]="property" tabindex="0" role="button"
                                             name="SellRent">{{property}}</label>
@@ -56,8 +57,8 @@
 
                                 <div class="form-group col-12">
                                     <label>In Buillding/Society/Project</label>
-                                    <input [(ngModel)]="propertyView.Name" type="text" class="form-control" ngModel name="propertyName" required
-                                        #propName="ngModel" minlength="5">
+                                    <input [(ngModel)]="propertyView.Name" type="text" class="form-control" ngModel
+                                        name="propertyName" required #propName="ngModel" minlength="5">
                                     <span *ngIf="(!propName.valid) && (propName.touched) " class="text-danger">
                                         <span *ngIf="propName.errors?.['required']" class="text-danger">Please Provide a
                                             Name</span>
@@ -80,7 +81,8 @@
                             <tab heading="Pricing and Area">Pricing Information
                                 <div class="form-group col-12">
                                     <label>Price (in USD)</label>
-                                    <input type="text" class="form-control" name="price" [(ngModel)]="propertyView.Price">
+                                    <input type="text" class="form-control" name="price"
+                                        [(ngModel)]="propertyView.Price">
                                 </div>
 
                                 <div class="form-group col-12">
@@ -239,10 +241,11 @@
     <div class="col-4">
         <div class="card-header">
             <h3>Your Property Preview</h3>
-            <div>
-                <app-property-card [property]="propertyView"></app-property-card>
-            </div>
         </div>
+        <div class="shadow-lg p-3 bg-white">
+            <app-property-card [property]="propertyView"></app-property-card>
+        </div>
+
     </div>
 </div>
 <button (click)="Back()" class="btn btn-primary">Back</button>

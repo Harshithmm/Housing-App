@@ -5,6 +5,10 @@
 .houseimg{
     height: 250px;
 }
+/* for giving it constant height and not changing during typing in add-property component */
+.card{
+    min-height: 400px;
+}
 /* for zooming in effects */
 
 .card:hover img{
