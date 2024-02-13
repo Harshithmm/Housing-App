@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+onLogout() {
+  console.log("logout successful");
+ localStorage.removeItem('token');
+}
 
+  loggedIn(){
+    return localStorage.getItem('token');  //in case user logged in it contains a value otherwise undefined
+  }
 }
