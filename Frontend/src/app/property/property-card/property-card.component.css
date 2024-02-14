@@ -5,6 +5,15 @@
 .houseimg{
     height: 250px;
 }
+.card-body h1{
+    font-family: fantasy;
+    color:dodgerblue
+}
+/* for price and builtarea */
+.font-highlight{
+    font-style: italic;
+    color: red;
+}
 /* for giving it constant height and not changing during typing in add-property component */
 .card{
     min-height: 400px;

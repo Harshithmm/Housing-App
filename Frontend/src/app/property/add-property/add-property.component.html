@@ -8,10 +8,11 @@
                 <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
                     <div class="tab-panel">
                         <tabset class="member-tabset" #formTabs>
-                            <tab heading="Basic info">
+                            <tab heading="Basic info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
+
                                 <div class="form-group col-12">
                                     <p>I want to</p>
-                                    <div class="btn-group" btnRadioGroup formControlName="SellRent" [(ngModel)]="propertyView.SellRent" name="SellRent" required>
+                                    <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.SellRent" name="SellRent" required>
                                         <label class="btn btn-outline-primary mr-2" btnRadio=1 tabindex="0"
                                             role="button" name="SellRent">Sell</label>
                                         <label class="btn btn-outline-primary" btnRadio=2 tabindex="0" role="button"
@@ -24,9 +25,9 @@
 
                                 <div class="form-group col-12">
                                     <p>BHK</p>
-                                    <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.BHK" name="BHK">
+                                    <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.BHK" name="BHK"  required>
                                         <label *ngFor="let bhk of [1,2,3,4]" class="btn btn-outline-primary"
-                                            [btnRadio]="bhk" tabindex="0" role="button" name="SellRent">{{bhk}}</label>
+                                            [btnRadio]="bhk" tabindex="0" role="button" name="BHK">{{bhk}}</label>
                                         <!-- [btnRadio]="bhk" : property binding for giving values where btnRadio is value property which we can find in normal radio buttions -->
                                     </div>
                                     <!-- <div class="error-block" *ngIf="SellRent.invalid && nextClicked">
@@ -36,11 +37,10 @@
 
                                 <div class="form-group col-12">
                                     <p>Property Type</p>
-                                    <div class="btn-group" btnRadioGroup  name="propType"
-                                        [(ngModel)]="propertyView.Ptype">
+                                    <div class="btn-group" btnRadioGroup  name="propType" [(ngModel)]="propertyView.Ptype" required>
                                         <label *ngFor="let property of propertTypes" class="btn btn-outline-primary"
                                             [btnRadio]="property" tabindex="0" role="button"
-                                            name="SellRent">{{property}}</label>
+                                            name="Ptype">{{property}}</label>
                                         <!-- [btnRadio]="bhk" : property binding for giving values where btnRadio is value property which we can find in normal radio buttions -->
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                 <div class="form-group col-12">
                                     <label>In Buillding/Society/Project</label>
                                     <input [(ngModel)]="propertyView.Name" type="text" class="form-control" ngModel
-                                        name="propertyName" required #propName="ngModel" minlength="5">
+                                        name="propertyName" #propName="ngModel" minlength="5">
                                     <span *ngIf="(!propName.valid) && (propName.touched) " class="text-danger">
                                         <span *ngIf="propName.errors?.['required']" class="text-danger">Please Provide a
                                             Name</span>
@@ -69,12 +69,12 @@
                                 </div>
 
                                 <div class="form-group col-12">
-                                    <label for="">City</label>
+                                    <label>City</label>
                                     <input type="text" class="form-control"  [(ngModel)]="propertyView.city" name="city">
                                 </div>
 
                                 <div class="form-group col-12">
-                                    <button type="button" class="btn btn-block btn-primary"
+                                    <button [disabled]="!BasicInfo.valid" type="button" class="btn btn-block btn-primary"
                                         (click)="selectTab(1)">Next</button>
                                 </div>
                             </tab>
@@ -82,7 +82,7 @@
                                 <div class="form-group col-12">
                                     <label>Price (in USD)</label>
                                     <input type="text" class="form-control" 
-                                        [(ngModel)]="propertyView.Price">
+                                        [(ngModel)]="propertyView.Price" name="Price">
                                 </div>
 
                                 <div class="form-group col-12">

@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
-import { Iproperty } from '../../Models/IProperty.interface';
 import { IpropertyBase } from '../../Models/IPropertybase';
 
 @Component({
@@ -44,6 +43,7 @@ onSubmit(addPropertyFormByFormVariable: NgForm) {
    console.log(addPropertyFormByFormVariable);
   console.log(this.addPropertyFormByViewChild?.value);
   console.log(this.propertyView);
+  console.log(addPropertyFormByFormVariable.value.BasicInfo.SellRent);  //output 1 or 2 based on the button we pressed
   }
 
 
