@@ -244,9 +244,13 @@ this contains most of bootstrap resources that are available for angular and u d
 
  <tab heading="Basic info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
 
- for getting tab values,ststus etc just like that of a form
+ for getting tab values,status etc just like that of a form
 
  ----------------------------------------------------------------------------------------------------------------------------
+
+  <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.Ftype" [ngModelOptions]="{standalone:true}" name="Ftype">
+
+  here [ngModelOptions]="{standalone:true}" is used to say that it doesnot belong to FormGroup in add-property.component.html some filds are craeted using reactive and some using template driven
 
 the above is useful for seeing data which is in json format to point out the errors
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

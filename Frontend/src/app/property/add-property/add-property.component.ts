@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { IpropertyBase } from '../../Models/IPropertybase';
@@ -9,7 +9,7 @@ import { IpropertyBase } from '../../Models/IPropertybase';
   templateUrl: './add-property.component.html',
   styleUrl: './add-property.component.css'
 })
-export class AddPropertyComponent {
+export class AddPropertyComponent implements OnInit{
 propertTypes:Array<string>=['House','Apartment','Duplex'];
 furnishTypes:Array<string>=['Fully','semi','unfurnished'];
 
@@ -22,9 +22,23 @@ propertyView:IpropertyBase={
   RTM: 0
 };
 
-constructor(private route: Router) { }
+addPropertyForm!:FormGroup;
 
-  @ViewChild('Form') addPropertyFormByViewChild: NgForm | undefined;  //other way to get data
+constructor(private route: Router,
+  private fb:FormBuilder) { }
+  ngOnInit(): void {
+    this.CreateAddPropertyForm();
+  }
+
+  CreateAddPropertyForm(){
+    this.addPropertyForm= this.fb.group({
+      SellRent:[null,Validators.required],
+      Ptype:[null,Validators.required],
+      PropertyName:[null,Validators.required],
+      Price:[null,Validators.required],
+      BuiltArea:[null,Validators.required]
+    })
+  }
   @ViewChild('formTabs',{ static: false }) formTabs?: TabsetComponent;    //add this from web and change to forTabs variable which is in  <tabset #formTabs>
   //in the html to access it,remove , { static: false } as default now will be false and add the function in the website and change variable name from staticTabs to forTabs
   selectTab(tabId: number) {
@@ -38,12 +52,10 @@ constructor(private route: Router) { }
 Back() {
   this.route.navigate(['/']);
 }       
-onSubmit(addPropertyFormByFormVariable: NgForm) {
+onSubmit() {
   console.log("form submitted");
-   console.log(addPropertyFormByFormVariable);
-  console.log(this.addPropertyFormByViewChild?.value);
   console.log(this.propertyView);
-  console.log(addPropertyFormByFormVariable.value.BasicInfo.SellRent);  //output 1 or 2 based on the button we pressed
+  console.log(this.addPropertyForm);
   }
 
 
