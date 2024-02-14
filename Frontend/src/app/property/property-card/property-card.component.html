@@ -2,7 +2,7 @@
     <div class="img-wrapper">
     <img *ngIf="property.Image" class="houseimg" src="../../../assets/Images/{{property.Image}}.jpg" alt="Not Found">
     <img *ngIf="!property.Image" class="houseimg" src="../../../assets/Images/House_default.jpg" alt="Not Found">
-    <ul class="list-inline text-center member-icons animate">
+    <ul *ngIf="!hideIcons" class="list-inline text-center member-icons animate">
         <li class="list-inline-item ">
             <button class="btn btn-primary" routerLink="/property-detail/{{property.Id}}"><i class="fa-solid fa-pen-to-square"></i></button>  <!--Added Icons-->
         </li>

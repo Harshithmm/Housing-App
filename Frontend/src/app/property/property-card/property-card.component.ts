@@ -8,5 +8,5 @@ import { Iproperty } from '../../Models/IProperty.interface';
 })
 export class PropertyCardComponent {
   @Input() property:Iproperty={Id:0,Type:"",Name:"",Price:0,SellRent:0,Image:""};
-
+  @Input() hideIcons:boolean=false;
 }
