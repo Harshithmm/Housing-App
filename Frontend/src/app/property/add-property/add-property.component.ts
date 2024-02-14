@@ -9,53 +9,61 @@ import { IpropertyBase } from '../../Models/IPropertybase';
   templateUrl: './add-property.component.html',
   styleUrl: './add-property.component.css'
 })
-export class AddPropertyComponent implements OnInit{
-propertTypes:Array<string>=['House','Apartment','Duplex'];
-furnishTypes:Array<string>=['Fully','semi','unfurnished'];
+export class AddPropertyComponent implements OnInit {
+  propertTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
+  furnishTypes: Array<string> = ['Fully', 'semi', 'unfurnished'];
 
-propertyView:IpropertyBase={
-  Id: 0, Ptype: "", Name: "", Price: 0, SellRent: 0, Image: "",
-  Ftype: '',
-  BHK: 0,
-  BuiltArea: 0,
-  city: '',
-  RTM: 0
-};
+  propertyView: IpropertyBase = {
+    Id: 0, Ptype: "", Name: "", Price: 0, SellRent: 0, Image: "",
+    Ftype: '',
+    BHK: 0,
+    BuiltArea: 0,
+    city: '',
+    RTM: 0
+  };
 
-addPropertyForm!:FormGroup;
+  addPropertyForm!: FormGroup;
 
-constructor(private route: Router,
-  private fb:FormBuilder) { }
+  constructor(private route: Router,
+    private fb: FormBuilder) { }
   ngOnInit(): void {
     this.CreateAddPropertyForm();
   }
 
-  CreateAddPropertyForm(){
-    this.addPropertyForm= this.fb.group({
-      SellRent:[null,Validators.required],
-      Ptype:[null,Validators.required],
-      PropertyName:[null,Validators.required],
-      Price:[null,Validators.required],
-      BuiltArea:[null,Validators.required]
+  CreateAddPropertyForm() {
+    this.addPropertyForm = this.fb.group({
+      BasicInfo: this.fb.group({
+        SellRent: [null, Validators.required],
+        Ptype: [null, Validators.required],
+        PropertyName: [null, Validators.required],
+      }),
+      PriceInfo: this.fb.group({
+        Price: [null, Validators.required],
+        BuiltArea: [null, Validators.required]
+      }),
     })
   }
-  @ViewChild('formTabs',{ static: false }) formTabs?: TabsetComponent;    //add this from web and change to forTabs variable which is in  <tabset #formTabs>
+  @ViewChild('formTabs', { static: false }) formTabs?: TabsetComponent;    //add this from web and change to forTabs variable which is in  <tabset #formTabs>
   //in the html to access it,remove , { static: false } as default now will be false and add the function in the website and change variable name from staticTabs to forTabs
   selectTab(tabId: number) {
     if (this.formTabs?.tabs[tabId]) {
       this.formTabs.tabs[tabId].active = true;
     }
     else
-    console.log("select");   //used else bcz it was not ececuting the if condition
-  }   
-  
-Back() {
-  this.route.navigate(['/']);
-}       
-onSubmit() {
-  console.log("form submitted");
-  console.log(this.propertyView);
-  console.log(this.addPropertyForm);
+      console.log("select");   //used else bcz it was not ececuting the if condition
+  }
+
+  get BasicInfo(){
+    return this.addPropertyForm.controls['BasicInfo'];
+  }
+
+  Back() {
+    this.route.navigate(['/']);
+  }
+  onSubmit() {
+    console.log("form submitted");
+    console.log(this.propertyView);
+    console.log(this.addPropertyForm.value.BasicInfo.SellRent);   //now to access sellrent we have to write like this
   }
 
 

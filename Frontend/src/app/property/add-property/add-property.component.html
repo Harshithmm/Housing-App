@@ -8,7 +8,7 @@
                 <form (ngSubmit)="onSubmit()" [formGroup]="addPropertyForm">
                     <div class="tab-panel">
                         <tabset class="member-tabset" #formTabs>
-                            <tab heading="Basic info">
+                            <tab heading="Basic info" formGroupName="BasicInfo">  <!--first tab belongs to basic info group which is in defined in ts file ||ly second tab-->
 
                                 <div class="form-group col-12">
                                     <p>I want to</p>
@@ -74,11 +74,12 @@
                                 </div>
 
                                 <div class="form-group col-12">
-                                    <button type="button" class="btn btn-block btn-primary"
+                                    <button type="button" class="btn btn-block btn-primary" [disabled]="BasicInfo.invalid"
                                         (click)="selectTab(1)">Next</button>
                                 </div>
                             </tab>
-                            <tab heading="Pricing and Area">Pricing Information
+                            <tab heading="Pricing and Area" formGroupName="PriceInfo">
+                                Pricing Information
                                 <div class="form-group col-12">
                                     <label>Price (in USD)</label>
                                     <input type="text" class="form-control" 

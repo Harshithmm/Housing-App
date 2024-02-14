@@ -253,6 +253,35 @@ this contains most of bootstrap resources that are available for angular and u d
   here [ngModelOptions]="{standalone:true}" is used to say that it doesnot belong to FormGroup in add-property.component.html some filds are craeted using reactive and some using template driven
 
 the above is useful for seeing data which is in json format to point out the errors
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ <tab heading="Basic info" formGroupName="BasicInfo">  <!--first tab belongs to basic info group which is in defined in ts file ||ly second tab-->
+
+  <tab heading="Pricing and Area" formGroupName="PriceInfo">
+
+  the groupname are in 
+    CreateAddPropertyForm() {
+    this.addPropertyForm = this.fb.group({
+      BasicInfo: this.fb.group({   
+        SellRent: [null, Validators.required],
+        Ptype: [null, Validators.required],
+        PropertyName: [null, Validators.required],
+      }),
+      PriceInfo: this.fb.group({
+        Price: [null, Validators.required],
+        BuiltArea: [null, Validators.required]
+      }),
+    })
+  }
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+for disabling the next button of the for we can use
+<button type="button" class="btn btn-block btn-primary" [disabled]="addPropertyForm.controls['BasicInfo'].invalid"
+                                        (click)="selectTab(1)">Next</button>
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
 ////////////////////////////////////////////////////
