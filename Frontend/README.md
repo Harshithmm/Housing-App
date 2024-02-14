@@ -237,6 +237,10 @@ this contains most of bootstrap resources that are available for angular and u d
 
 
 -------------------------------------------------------------------------------------------------------------------------
+
+<p>{{property | json}}</p>
+
+the above is useful for seeing data which is in json format to point out the errors
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
 ////////////////////////////////////////////////////

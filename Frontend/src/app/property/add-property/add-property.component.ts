@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { Iproperty } from '../../Models/IProperty.interface';
+import { IpropertyBase } from '../../Models/IPropertybase';
 
 @Component({
   selector: 'app-add-property',
@@ -13,7 +14,14 @@ export class AddPropertyComponent {
 propertTypes:Array<string>=['House','Apartment','Duplex'];
 furnishTypes:Array<string>=['Fully','semi','unfurnished'];
 
-propertyView:Iproperty={Id:0,Type:"",Name:"",Price:0,SellRent:0,Image:""};
+propertyView:IpropertyBase={
+  Id: 0, Ptype: "", Name: "", Price: 0, SellRent: 0, Image: "",
+  Ftype: '',
+  BHK: 0,
+  BuiltArea: 0,
+  city: '',
+  RTM: 0
+};
 
 constructor(private route: Router) { }
 
@@ -25,7 +33,7 @@ constructor(private route: Router) { }
       this.formTabs.tabs[tabId].active = true;
     }
     else
-    console.log("select");
+    console.log("select");   //used else bcz it was not ececuting the if condition
   }   
   
 Back() {
@@ -33,8 +41,9 @@ Back() {
 }       
 onSubmit(addPropertyFormByFormVariable: NgForm) {
   console.log("form submitted");
-  // console.log(form);
-  console.log(this.addPropertyFormByViewChild);
+   console.log(addPropertyFormByFormVariable);
+  console.log(this.addPropertyFormByViewChild?.value);
+  console.log(this.propertyView);
   }
 
 

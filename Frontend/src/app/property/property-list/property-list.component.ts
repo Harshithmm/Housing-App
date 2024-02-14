@@ -1,8 +1,8 @@
 
 import { Component, Input } from '@angular/core';
 import { HousingService } from '../../services/housing.service';
-import { Iproperty } from '../../Models/IProperty.interface';
 import { ActivatedRoute } from '@angular/router';
+import { IpropertyBase } from '../../Models/IPropertybase';
 
 @Component({
   selector: 'app-property-list',
@@ -13,8 +13,15 @@ export class PropertyListComponent {
 SellRent=1;
 constructor(private housingservice:HousingService,private route:ActivatedRoute){}
 
-  properties:Iproperty[]=[
-    {Id:0,Type:"",Name:"",Price:0,SellRent:0}
+  properties:IpropertyBase[]=[
+    {
+      Id: 0, Ptype: "", Name: "", Price: 0, SellRent: 0, Image: "",
+      Ftype: '',
+      BHK: 0,
+      BuiltArea: 0,
+      city: '',
+      RTM: 0
+    }
   ];
 
   ngOnInit():void{
@@ -26,6 +33,7 @@ constructor(private housingservice:HousingService,private route:ActivatedRoute){
       {console.log(data),
         console.log(this.route.snapshot.url.toString()),
       this.properties=data;
+      console.log(this.properties);
       },
       error=>{
         console.log(error);
