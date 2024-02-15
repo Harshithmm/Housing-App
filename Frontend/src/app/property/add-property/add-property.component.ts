@@ -22,7 +22,7 @@ export class AddPropertyComponent implements OnInit {
     RTM: 0
   };
 
-  NextIsClicked:boolean=false;
+  NextIsClicked: boolean = false;
   addPropertyForm!: FormGroup;
 
   constructor(private route: Router,
@@ -34,7 +34,7 @@ export class AddPropertyComponent implements OnInit {
   CreateAddPropertyForm() {
     this.addPropertyForm = this.fb.group({
       BasicInfo: this.fb.group({
-        SellRent: ['1' , Validators.required],   //default given 1 to represent Sell
+        SellRent: ['1', Validators.required],   //default given 1 to represent Sell
         BHK: [null, Validators.required],
         Ptype: [null, Validators.required],
         Ftype: [null, Validators.required],
@@ -67,24 +67,16 @@ export class AddPropertyComponent implements OnInit {
   }
   @ViewChild('formTabs', { static: false }) formTabs?: TabsetComponent;    //add this from web and change to forTabs variable which is in  <tabset #formTabs>
   //in the html to access it,remove , { static: false } as default now will be false and add the function in the website and change variable name from staticTabs to forTabs
-  selectTab1(tabId: number,IsCurrentTabValid:boolean) {
-    this.NextIsClicked=true;
-    if (this.formTabs?.tabs[tabId]&&IsCurrentTabValid) {
+  selectTab(tabId: number, IsCurrentTabValid: boolean) {
+    this.NextIsClicked = true;
+    if (this.formTabs?.tabs[tabId] && IsCurrentTabValid) {
       this.formTabs.tabs[tabId].active = true;
     }
     else
       console.log("select");   //used else bcz it was not ececuting the if condition
   }
 
-  selectTab(tabId: number) {
-    if (this.formTabs?.tabs[tabId]) {
-      this.formTabs.tabs[tabId].active = true;
-    }
-    else
-      console.log("select");   //used else bcz it was not ececuting the if condition
-  }
-
-//#region <Getter Methods>
+  //#region <Getter Methods>
   // #region <FormGroups>
   get BasicInfo() {
     return this.addPropertyForm.controls['BasicInfo'] as FormGroup;
@@ -101,9 +93,9 @@ export class AddPropertyComponent implements OnInit {
   get OtherInfo() {
     return this.addPropertyForm.controls['OtherInfo'] as FormGroup;
   }
-// #endregion
+  // #endregion
 
-//#region <Form Controls>
+  //#region <Form Controls>
   get SellRent() {
     return this.BasicInfo.controls['SellRent'] as FormControl;
   }
@@ -188,30 +180,45 @@ export class AddPropertyComponent implements OnInit {
     return this.OtherInfo.controls['Description'] as FormControl;
   }
 
-//#endregion
-//#endregion
+  //#endregion
+  //#endregion
   Back() {
     this.route.navigate(['/']);
   }
-  onSubmit() {
-    this.NextIsClicked=true;
-    if(this.BasicInfo.invalid)
-    {
+  allTabsValid(): boolean {
+    if (this.BasicInfo.invalid) {
       this.formTabs!.tabs[0].active = true;
-      return;                      //very imp to put return otherwise pgm will executes and got to the 2nd tab cuz even though 1st condion is true it will 
-                                   //execute second cuz if not else and also it will submit the form if do not put return
-    }
-    
-    if(this.PriceInfo.invalid)
-    {
-      this.formTabs!.tabs[1].active = true;
-      return;
+      return false;                                //very imp to put return otherwise pgm will executes and got to the 2nd tab cuz even though 1st condion is true it will 
+      //execute second cuz if not else and also it will submit the form if do not put return
     }
 
+    if (this.PriceInfo.invalid) {
+      this.formTabs!.tabs[1].active = true;
+      return false;
+    }
+
+    if (this.AddressInfo.invalid) {
+      this.formTabs!.tabs[2].active = true;
+      return false;
+    }
+
+    if (this.OtherInfo.invalid) {
+      this.formTabs!.tabs[3].active = true;
+      return false;
+    }
+    return true;
+  }
+  onSubmit() {
+    this.NextIsClicked = true;
+    if(this.allTabsValid()){
     console.log("form submitted");
     console.log(this.addPropertyForm);
     console.log(this.propertyView);
     console.log(this.addPropertyForm.value.BasicInfo.SellRent);   //now to access sellrent we have to write like this
+    }
+    else{
+      console.log("provide all entries");
+    }
   }
 
 

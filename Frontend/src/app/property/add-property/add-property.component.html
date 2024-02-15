@@ -93,7 +93,7 @@
 
                                 <div class="form-group col-12">
                                     <button type="button" class="btn btn-block btn-primary"
-                                        (click)="selectTab1(1,BasicInfo.valid)">Next</button>
+                                        (click)="selectTab(1,BasicInfo.valid)">Next</button>
                                 </div>
                             </tab>
                             <tab heading="Pricing and Area" formGroupName="PriceInfo">
@@ -138,11 +138,11 @@
 
                                 <div class="form-group col-12">
                                     <button type="button" class="btn btn-block btn-primary"
-                                        (click)="selectTab(0)">Back</button>
+                                        (click)="selectTab(0,PriceInfo.valid)">Back</button>
                                 </div>
                                 <div class="form-group col-12">
                                     <button type="button" class="btn btn-block btn-primary"
-                                        (click)="selectTab(2)">Next</button>
+                                        (click)="selectTab(2,PriceInfo.valid)">Next</button>
                                 </div>
                             </tab>
                             <tab heading="Adress" formGroupName="AddressInfo">Adress Information
@@ -168,10 +168,10 @@
                                 <div class="form-group col-12">
                                     <div class="form-group col-12">
                                         <button type="button" class="btn btn-block btn-primary"
-                                            (click)="selectTab(1)">Back</button>
+                                            (click)="selectTab(1,AddressInfo.valid)">Back</button>
                                     </div>
                                     <button type="button" class="btn btn-block btn-primary"
-                                        (click)="selectTab(3)">Next</button>
+                                        (click)="selectTab(3,AddressInfo.valid)">Next</button>
                                 </div>
                             </tab>
                             <tab heading="Other Details" formGroupName="OtherInfo">Other Details
@@ -236,10 +236,10 @@
                                 <div class="form-group col-12">
                                     <div class="form-group col-12">
                                         <button type="button" class="btn btn-block btn-primary"
-                                            (click)="selectTab(2)">Back</button>
+                                            (click)="selectTab(2, OtherInfo.valid)">Back</button>
                                     </div>
                                     <button type="button" class="btn btn-block btn-primary"
-                                        (click)="selectTab(4)">Next</button>
+                                        (click)="selectTab(4, OtherInfo.valid)">Next</button>
                                 </div>
                             </tab>
                             <tab heading="Photos">Upload Photos
@@ -251,7 +251,7 @@
                                 </div>
                                 <div class="form-group col-12">
                                     <button type="button" class="btn btn-block btn-primary"
-                                        (click)="selectTab(3)">Back</button>
+                                        (click)="selectTab(3,true)">Back</button>
                                 </div>
 
                                 <div class="form-group col-12">
