@@ -281,7 +281,22 @@ for disabling the next button of the for we can use
 <button type="button" class="btn btn-block btn-primary" [disabled]="addPropertyForm.controls['BasicInfo'].invalid"
                                         (click)="selectTab(1)">Next</button>
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
+for 2 way binding there should be a name field
+
+[(ngModel)]="propertyView.Name" name="Name"
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+if else in angilar
+                                    <div class="text-danger"
+                                        *ngIf="(Price.invalid) && (Price.touched || NextIsClicked)">
+                                        Please Provide the
+                                        <span *ngIf="SellRent.value==1;else ShowRent">price</span>
+                                        <ng-template #ShowRent>rent</ng-template>
+                                    </div>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   @ViewChild('Form') addPropertyForm: NgForm | undefined;  //other way to get data
 ////////////////////////////////////////////////////
