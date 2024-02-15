@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angula
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { IpropertyBase } from '../../Models/IPropertybase';
+import { Property } from '../../Models/property';
+import { HousingService } from '../../services/housing.service';
 
 @Component({
   selector: 'app-add-property',
@@ -13,6 +15,7 @@ export class AddPropertyComponent implements OnInit {
   propertTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
   furnishTypes: Array<string> = ['Fully', 'semi', 'unfurnished'];
 
+  property = new Property()
   propertyView: IpropertyBase = {
     Id: 0, Ptype: "", Name: "", Price: 0, SellRent: 0, Image: "",
     Ftype: '',
@@ -26,7 +29,9 @@ export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
 
   constructor(private route: Router,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private service: HousingService) { }
+
   ngOnInit(): void {
     this.CreateAddPropertyForm();
   }
@@ -57,7 +62,7 @@ export class AddPropertyComponent implements OnInit {
 
       OtherInfo: this.fb.group({
         RTM: [null, Validators.required],
-        PosessionOn: [null],
+        PossessionOn: [null],
         AOP: [null],
         Gated: [null],
         MainEntrance: [null],
@@ -104,12 +109,12 @@ export class AddPropertyComponent implements OnInit {
     return this.BasicInfo.controls['BHK'] as FormControl;
   }
 
-  get PType() {
-    return this.BasicInfo.controls['PType'] as FormControl;
+  get Ptype() {
+    return this.BasicInfo.controls['Ptype'] as FormControl;
   }
 
-  get FType() {
-    return this.BasicInfo.controls['FType'] as FormControl;
+  get Ftype() {
+    return this.BasicInfo.controls['Ftype'] as FormControl;
   }
 
   get Name() {
@@ -160,8 +165,8 @@ export class AddPropertyComponent implements OnInit {
     return this.OtherInfo.controls['RTM'] as FormControl;
   }
 
-  get PossesioOn() {
-    return this.OtherInfo.controls['PosessionOn'] as FormControl;
+  get PossessionOn() {
+    return this.OtherInfo.controls['PossessionOn'] as FormControl;
   }
 
   get AOP() {
@@ -172,7 +177,7 @@ export class AddPropertyComponent implements OnInit {
     return this.OtherInfo.controls['Gated'] as FormControl;
   }
 
-  get MainEntrace() {
+  get MainEntrance() {
     return this.OtherInfo.controls['MainEntrance'] as FormControl;
   }
 
@@ -208,15 +213,43 @@ export class AddPropertyComponent implements OnInit {
     }
     return true;
   }
+
+  mapProperty(): void {
+    this.property.SellRent = +this.SellRent.value;                            //+ sign to convert this.SellRent.value  this to a number
+    this.property.BHK = this.BHK.value;
+    this.property.Ptype = this.Ptype.value;
+    this.property.Name = this.Name.value;
+    this.property.city = this.City.value;
+    this.property.Ftype = this.Ftype.value;
+    this.property.Price = this.Price.value;
+    this.property.Security = this.Security.value;
+    this.property.Maintenance = this.Maintenance.value;
+    this.property.BuiltArea = this.BuiltArea.value;
+    this.property.CarpetArea = this.CarpetArea.value;
+    this.property.FloorNo = this.FloorNo.value;
+    this.property.TotalFloor = this.TotalFloor.value;
+    this.property.Address = this.Address.value;
+    this.property.Address2 = this.LandMark.value;
+    this.property.RTM = this.RTM.value;
+    this.property.AOP = this.AOP.value;
+    this.property.Gated = this.Gated.value;
+    this.property.MainEntrance = this.MainEntrance.value;
+    this.property.Possession = this.PossessionOn.value;
+    this.property.Description = this.Description.value;
+    this.property.PostedOn = new Date().toString();         //this will take the current time when the form is submitted on
+  }
+
   onSubmit() {
     this.NextIsClicked = true;
-    if(this.allTabsValid()){
-    console.log("form submitted");
-    console.log(this.addPropertyForm);
-    console.log(this.propertyView);
-    console.log(this.addPropertyForm.value.BasicInfo.SellRent);   //now to access sellrent we have to write like this
+    if (this.allTabsValid()) {
+      this.mapProperty();
+      this.service.addProperty(this.property);
+      console.log("form submitted");
+      console.log(this.addPropertyForm);
+      console.log(this.propertyView);
+      console.log(this.addPropertyForm.value.BasicInfo.SellRent);   //now to access sellrent we have to write like this
     }
-    else{
+    else {
       console.log("provide all entries");
     }
   }
