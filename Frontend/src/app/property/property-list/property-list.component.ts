@@ -33,6 +33,11 @@ constructor(private housingservice:HousingService,private route:ActivatedRoute){
       {console.log(data),
         console.log(this.route.snapshot.url.toString()),
       this.properties=data;
+      const newproperty=JSON.parse(localStorage.getItem('newProperty0')??'');
+      if(newproperty!==''&&newproperty.SellRent===this.SellRent){
+        this.properties=[newproperty,...this.properties];
+
+      }
       console.log(this.properties);
       },
       error=>{

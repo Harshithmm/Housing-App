@@ -5,6 +5,7 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
 import { IpropertyBase } from '../../Models/IPropertybase';
 import { Property } from '../../Models/property';
 import { HousingService } from '../../services/housing.service';
+import { AlertifyService } from '../../services/alertify.service';
 
 @Component({
   selector: 'app-add-property',
@@ -28,9 +29,10 @@ export class AddPropertyComponent implements OnInit {
   NextIsClicked: boolean = false;
   addPropertyForm!: FormGroup;
 
-  constructor(private route: Router,
+  constructor(private router: Router,
     private fb: FormBuilder,
-    private service: HousingService) { }
+    private service: HousingService,
+    private alertify:AlertifyService) { }
 
   ngOnInit(): void {
     this.CreateAddPropertyForm();
@@ -188,7 +190,7 @@ export class AddPropertyComponent implements OnInit {
   //#endregion
   //#endregion
   Back() {
-    this.route.navigate(['/']);
+    this.router.navigate(['/']);
   }
   allTabsValid(): boolean {
     if (this.BasicInfo.invalid) {
@@ -244,13 +246,19 @@ export class AddPropertyComponent implements OnInit {
     if (this.allTabsValid()) {
       this.mapProperty();
       this.service.addProperty(this.property);
-      console.log("form submitted");
+      this.alertify.Success("form submittedsuccessfully");
       console.log(this.addPropertyForm);
       console.log(this.propertyView);
       console.log(this.addPropertyForm.value.BasicInfo.SellRent);   //now to access sellrent we have to write like this
+      if(this.SellRent.value==1){
+        this.router.navigate(['']);
+      }
+      else{
+        this.router.navigate(['rent-property']);
+      }
     }
     else {
-      console.log("provide all entries");
+      this.alertify.Error("provide all entries");
     }
   }
 

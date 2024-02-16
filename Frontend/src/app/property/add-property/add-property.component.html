@@ -126,7 +126,7 @@
                                 <div class="form-group col-12">
                                     <label>Built Area (in Sqr Feet)</label>
                                     <input type="text" class="form-control" formControlName="BuiltArea">
-                                    <div *ngIf="BuiltArea.invalid && NextIsClicked">
+                                    <div *ngIf="(BuiltArea.invalid) && (BuiltArea.touched || NextIsClicked)" class="text-danger">
                                         Please select built up area
                                     </div>
                                 </div>
