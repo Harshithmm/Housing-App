@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Iproperty } from '../Models/IProperty.interface';
 import { Property } from '../Models/property';
+import { IpropertyBase } from '../Models/IPropertybase';
 
 @Injectable({
   providedIn: 'root'
@@ -11,25 +12,35 @@ export class HousingService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProperties(SellRent: number): Observable<Iproperty[]> {
+  getAllProperties(SellRent?: number): Observable<Property[]> {
     return this.http.get('data/properties.json').pipe(
       map((data: { [key: string]: any }) => {
-        const propertiesArray: Array<Iproperty> = [];
+        const propertiesArray: Array<Property> = [];
         const localproperties=JSON.parse(localStorage.getItem('newProperty0')!);
         if(localproperties){
         for (const id in localproperties) {
+          if(SellRent){
           console.log(id)
           if (localproperties.hasOwnProperty(id) && localproperties[id].SellRent === SellRent) {
             propertiesArray.push(localproperties[id]); // Fix: Use index signature to allow indexing with a number
           }
         }
+        else{
+          propertiesArray.push(localproperties[id]);
+        }
+        }
       }
 
         for (const id in data) {
+          if(SellRent){
           console.log(id)
           if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
             propertiesArray.push(data[id]); // Fix: Use index signature to allow indexing with a number
           }
+        }
+        else{
+          propertiesArray.push(data[id]);
+        }
         }
         console.log(propertiesArray);
         return propertiesArray;
@@ -64,7 +75,7 @@ export class HousingService {
   //to generate new id for the properties
   newPropId(){
     if(localStorage.getItem('PID')){
-    localStorage.setItem('PID',String(+localStorage.getItem('PID')!+1));  //localstorage does not allow numbers hence converted to number added 1 again convrted to string.
+    localStorage.setItem('PID',String(+localStorage.getItem('PID')!+1));  //localstorage does not allow numbers hence converted to number added + again convrted to string.
     return +localStorage.getItem('PID')!;
     }
     else{
@@ -72,4 +83,13 @@ export class HousingService {
       return 101;
     }
   }
+
+    getPropertyById(propertyId:number):Observable<Property>{
+      return this.getAllProperties().pipe(
+        map(propertiesArray=>{
+          console.log(propertiesArray,propertyId);
+          return propertiesArray.find(p=>p.Id==propertyId)!;
+        })
+      )
+    }
 }
