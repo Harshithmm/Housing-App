@@ -24,6 +24,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
    ButtonsModule.forRoot(),
    BsDatepickerModule.forRoot(),
+   NgxGalleryModule
   ],
   providers: [HousingService,UserServiceService,AlertifyService],
   bootstrap: [AppComponent]
