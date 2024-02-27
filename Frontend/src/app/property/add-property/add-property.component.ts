@@ -15,7 +15,7 @@ import { AlertifyService } from '../../services/alertify.service';
 export class AddPropertyComponent implements OnInit {
   propertTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
   furnishTypes: Array<string> = ['Fully', 'semi', 'unfurnished'];
-  cityList!:string[];
+  cityList!:any[];
 
   property = new Property()
   propertyView: IpropertyBase = {
