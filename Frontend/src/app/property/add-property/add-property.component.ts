@@ -15,6 +15,7 @@ import { AlertifyService } from '../../services/alertify.service';
 export class AddPropertyComponent implements OnInit {
   propertTypes: Array<string> = ['House', 'Apartment', 'Duplex'];
   furnishTypes: Array<string> = ['Fully', 'semi', 'unfurnished'];
+  cityList!:string[];
 
   property = new Property()
   propertyView: IpropertyBase = {
@@ -24,7 +25,7 @@ export class AddPropertyComponent implements OnInit {
     BuiltArea: 0,
     city: '',
     RTM: 0
-  };
+  };   //the city value is blank or '' hence in the dropdown city it will take the default value and selected attribute doesnot work
 
   NextIsClicked: boolean = false;
   addPropertyForm!: FormGroup;
@@ -36,6 +37,12 @@ export class AddPropertyComponent implements OnInit {
 
   ngOnInit(): void {
     this.CreateAddPropertyForm();
+    this.service.getAllCities().subscribe(
+      (data)=>{
+        this.cityList=data;
+        console.log(data);
+      }
+    )
   }
 
   CreateAddPropertyForm() {
